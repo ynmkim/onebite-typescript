@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Editor from './components/Editor';
-interface Todo {
+interface TodoList {
   id: number;
   content: string;
 }
 
 function App() {
-  const [todo, setTodo] = useState<Todo[]>([]);
+  const [todoList, setTodoList] = useState<TodoList[]>([]);
 
   const idRef = useRef(0);
 
   const onCreate = (text: string) => {
-    setTodo([
-      ...todo,
+    setTodoList([
+      ...todoList,
       {
         id: idRef.current++,
         content: text,
@@ -22,8 +22,8 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(todo);
-  }, [todo]);
+    console.log(todoList);
+  }, [todoList]);
 
   return (
     <div className="App">

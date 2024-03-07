@@ -5,20 +5,20 @@ interface Props {
 }
 
 export default function Editor({ onCreate }: Props) {
-  const [text, setText] = useState('');
+  const [todoItem, setTodoItem] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
+    setTodoItem(e.target.value);
   };
 
   const handleClick = () => {
-    onCreate(text);
-    setText(text);
+    onCreate(todoItem);
+    setTodoItem(todoItem);
   };
 
   return (
     <div>
-      <input value={text} onChange={handleChange} />
+      <input value={todoItem} onChange={handleChange} />
       <button type="button" onClick={handleClick}>
         추가
       </button>
