@@ -1,10 +1,8 @@
 import { useState } from 'react';
+import { useTodoDispatch } from '../App';
 
-interface Props {
-  onCreate: (text: string) => void;
-}
-
-export default function Editor({ onCreate }: Props) {
+export default function Editor() {
+  const dispatch = useTodoDispatch();
   const [todoItem, setTodoItem] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +10,7 @@ export default function Editor({ onCreate }: Props) {
   };
 
   const handleClick = () => {
-    onCreate(todoItem);
+    dispatch.onCreate(todoItem);
     setTodoItem(todoItem);
   };
 

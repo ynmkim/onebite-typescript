@@ -1,12 +1,13 @@
+import { useTodoDispatch } from '../App';
 import { Todo } from '../types';
 
-interface Props extends Todo {
-  onDelete: (id: number) => void;
-}
+interface Props extends Todo {}
 
-export default function TodoItem({ onDelete, ...todo }: Props) {
+export default function TodoItem({ ...todo }: Props) {
+  const dispatch = useTodoDispatch();
+
   const handleDelete = () => {
-    onDelete(todo.id);
+    dispatch.onDelete(todo.id);
   };
 
   return (
