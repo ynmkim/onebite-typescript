@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Editor from './components/Editor';
-interface TodoList {
-  id: number;
-  content: string;
-}
+import TodoItem from './components/TodoItem';
+import { Todo } from './types';
 
 function App() {
-  const [todoList, setTodoList] = useState<TodoList[]>([]);
+  const [todoList, setTodoList] = useState<Todo[]>([]);
 
   const idRef = useRef(0);
 
@@ -29,6 +27,11 @@ function App() {
     <div className="App">
       <h1>Todo</h1>
       <Editor onCreate={onCreate} />
+      <ul>
+        {todoList.map((todo) => (
+          <TodoItem key={todo.id} {...todo} />
+        ))}
+      </ul>
     </div>
   );
 }
