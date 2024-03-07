@@ -19,6 +19,10 @@ function App() {
     ]);
   };
 
+  const onDelete = (id: number) => {
+    setTodoList(todoList.filter((todo) => todo.id !== id));
+  };
+
   useEffect(() => {
     console.log(todoList);
   }, [todoList]);
@@ -29,7 +33,7 @@ function App() {
       <Editor onCreate={onCreate} />
       <ul>
         {todoList.map((todo) => (
-          <TodoItem key={todo.id} {...todo} />
+          <TodoItem key={todo.id} {...todo} onDelete={onDelete} />
         ))}
       </ul>
     </div>
