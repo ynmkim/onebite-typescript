@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
-
+import Editor from './components/Editor';
 interface Todo {
   id: number;
   content: string;
@@ -8,15 +8,10 @@ interface Todo {
 
 function App() {
   const [todo, setTodo] = useState<Todo[]>([]);
-  const [text, setText] = useState('');
 
   const idRef = useRef(0);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
-
-  const handleClick = () => {
+  const onCreate = (text: string) => {
     setTodo([
       ...todo,
       {
@@ -24,8 +19,6 @@ function App() {
         content: text,
       },
     ]);
-
-    setText('');
   };
 
   useEffect(() => {
@@ -35,10 +28,7 @@ function App() {
   return (
     <div className="App">
       <h1>Todo</h1>
-      <input value={text} onChange={handleChange} />
-      <button type="button" onClick={handleClick}>
-        추가
-      </button>
+      <Editor onCreate={onCreate} />
     </div>
   );
 }
